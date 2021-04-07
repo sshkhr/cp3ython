@@ -26,7 +26,16 @@ namespace cp3ython {
 		operandStack_.push(sum);
 	}
 
-	void Interpreter::runCode() {
+	void Interpreter::runCode(InstructionSet bytecode) {
+
+		for(const auto instruction: bytecode.instructions){
+			if(instruction.first == "LOAD_VALUE")
+				loadValue(bytecode.operands[instruction.second]);
+			else if(instruction.first == "ADD_TWO_VALUES")
+				addTwoValues();
+			else if(instruction.first == "PRINT_ANSWER")
+				std::cout<<this<<endl;
+		}
 	
 	}
 
